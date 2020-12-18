@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu, shell } = require('electron');
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -9,8 +9,40 @@ function createWindow () {
     }
   })
 
-  win.loadFile('src/index.html')
+  win.loadFile('src/index.html');
+  win.webContents.openDevTools();
 }
+
+const templateMenu = [
+  {
+    label: 'Cadastro',
+    submenu: [
+      {
+        label: 'Banda',
+        click: function() {
+          shell.openExternal('https://www.electronjs.org/');
+        }
+      },
+      {label: 'Cantor'},
+    ]
+  },
+  {
+    label: 'Relatório',
+    submenu: [
+      {
+        label: 'Bandas', 
+        click(menuItem, browserWindow, event) {
+          browserWindow.loadURL(`file://${__dirname}/integrantes.html`)
+        }
+        
+      },
+      {label: 'Cantores'}
+    ]
+  },
+];
+
+const menu = Menu.buildFromTemplate(templateMenu);
+Menu.setApplicationMenu(menu);
 
 app.whenReady().then(createWindow)
 
