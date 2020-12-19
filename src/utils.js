@@ -10,7 +10,8 @@ button.addEventListener('click', submit, false);
 
 function calc(){
     const total = document.getElementById('total');
-    total.innerHTML = (valor * qtd.value).toLocaleString('pt-br', {minimumFractionDigits: 2});;
+    total.innerHTML =
+    (valor * qtd.value).toLocaleString('pt-br', {minimumFractionDigits: 2});;
 }
 
 function submit(){
