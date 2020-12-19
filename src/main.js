@@ -15,6 +15,17 @@ function createWindow () {
 
 const templateMenu = [
   {
+    label: 'Início',
+    submenu: [
+      {
+        label: 'Apresentação',
+        click(menuItem, browserWindow, event) {
+          browserWindow.loadURL(`file://${__dirname}/index.html`);
+        }
+      }
+    ]
+  },
+  {
     label: 'Cadastro',
     submenu: [
       {
@@ -30,15 +41,22 @@ const templateMenu = [
     label: 'Relatório',
     submenu: [
       {
-        label: 'Bandas', 
-        click(menuItem, browserWindow, event) {
-          browserWindow.loadURL(`file://${__dirname}/integrantes.html`)
-        }
-        
+        label: 'Bandas'
       },
-      {label: 'Cantores'}
+      {
+        label: 'Cantores', 
+        click(menuItem, browserWindow, event) {
+          browserWindow.loadURL(`file://${__dirname}/integrantes.html`);
+        }
+      }
     ]
   },
+  {
+    label: 'Entre em Contato',
+    click(menuItem, browserWindow, event) {
+      browserWindow.loadURL(`file://${__dirname}/contato.html`);
+    }
+  }
 ];
 
 const menu = Menu.buildFromTemplate(templateMenu);
